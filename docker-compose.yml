@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: posterr_admin
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: posterr
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  app:
+    build: .
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgresql://posterr_admin:123456@db/posterr
+    command: >
+      bash -c "flask db upgrade
+      && gunicorn --bind 0.0.0.0:5000 app:app"
+
+volumes:
+  postgres_data:

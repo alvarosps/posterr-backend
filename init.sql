@@ -1,0 +1,4 @@
+CREATE DATABASE posterr;
+CREATE USER posterr_admin WITH PASSWORD '123456';
+ALTER DATABASE posterr OWNER TO posterr_admin;
+GRANT ALL PRIVILEGES ON DATABASE posterr TO posterr_admin;
