@@ -35,6 +35,14 @@ The application will be running at http://localhost:5000
 
 The application will be runnin at http://localhost:5000
 
+# Important: When using the frontend application without user management
+If you are using the frontend application that does not support used for the moment, start the backend, and add a user to it, so we have user_id = 1 in the database.
+For that, do a POST call to http://localhost:5000/api/users with a JSON body:
+```
+{
+    "username": "an username you want to put"
+}
+```
 ## Usage
 
 You can now interact with the Posterr backend API. The available endpoints are:
